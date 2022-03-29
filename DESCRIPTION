@@ -1,0 +1,24 @@
+Package: rt
+Title: Simple Helpers for Working with Artifactory 
+Version: 0.0.1.9000
+Authors@R: 
+        c(person(given = "Siqi",
+                 family = "Zhang",
+                 role = c("aut", "cre"),
+                 email = "siqi.zhang@bayer.com"),
+          person(given = "Bayer Healthcare LLC",
+                 role = "fnd"))
+Description: Build and install packages to and from CRAN-like repositories on Artifactory. 
+  Set up and manage user enrivonment to keep track of repositories and credentials. 
+License: GPL (>= 3)
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.2
+Depends: 
+    R (>= 4.0)
+Imports: 
+    curl,
+    devtools
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
