@@ -18,7 +18,9 @@ Depends:
     R (>= 4.0)
 Imports: 
     curl,
+    lifecycle,
     devtools
 Suggests: 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
+URL: https://iqis.github.io/rt/
