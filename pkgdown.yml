@@ -1,0 +1,9 @@
+pandoc: 2.7.3
+pkgdown: 2.0.2
+pkgdown_sha: ~
+articles: {}
+last_built: 2022-03-29T21:46Z
+urls:
+  reference: https://iqis.github.io/rt/reference
+  article: https://iqis.github.io/rt/articles
+
