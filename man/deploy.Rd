@@ -4,7 +4,7 @@
 \alias{deploy}
 \title{Deploy Package to CRAN-like Repository on Artifactory}
 \usage{
-deploy(file, profile = profile())
+deploy(file, profile = rt::profile())
 }
 \arguments{
 \item{file}{path to an R package binary file; <character>}

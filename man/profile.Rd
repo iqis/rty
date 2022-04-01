@@ -9,11 +9,11 @@ profile(repo = get_repo(), cred = get_cred())
 \arguments{
 \item{repo}{repository; <rt.repo>}
 
-\item{cred}{credential; <rt.cred>}
+\item{cred}{credentials; <rt.cred>}
 }
 \value{
 <rt.profile>
 }
 \description{
-The Artifactory profile is the combination of repository and credential.
+An Artifactory profile is the combination of Repository and Credentials.
 }
