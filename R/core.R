@@ -39,17 +39,8 @@ deploy <- function(file, profile = rt::profile()){
   }
 
   if (inherits(profile$cred, "rt.cred.api_key")) {
-    # ret <- system(sprintf('curl -H "X-JFrog-Art-Api:%s" -T %s -XPOST "%s"',
-    #                       attr(profile$cred, "key"),
-    #                       file,
-    #                       api_endpoint(profile$repo)),
-    #               intern = TRUE)
-    # if (ret != character()) {
-    #   ret_msg <- jsonlite::fromJSON(ret)
-    #   return(ret_msg)
-    # }
 
-    response <- httr::POST(api_endpoint(profile$repo),
+        response <- httr::POST(api_endpoint(profile$repo),
                            httr::add_headers(.headers = profile$cred),
                            body = httr::upload_file(file))
 
@@ -58,8 +49,7 @@ deploy <- function(file, profile = rt::profile()){
                                     profile$repo,
                                     response))
     }
-
-    return(response)
+        return(response)
 
   } else if (inherits(profile$cred, "rt.cred.token")) {
     stop("Deploying with Token is not supported yet.")
