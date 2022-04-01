@@ -4,7 +4,7 @@
 \alias{available}
 \title{Available Packages}
 \usage{
-available(profile = profile(), ...)
+available(profile = rt::profile(), ...)
 }
 \arguments{
 \item{profile}{Artifactory profile; <rt.profile>}

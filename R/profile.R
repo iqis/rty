@@ -16,3 +16,11 @@ profile <- function(repo = get_repo(), cred = get_cred()){
                  cred = cred),
             class = "rt.profile")
 }
+
+#' @method print rt.profile
+#' @export
+print.rt.profile <- function(x, ...){
+  cat("Artifactory Profile")
+  print(x$repo)
+  print(x$cred)
+}

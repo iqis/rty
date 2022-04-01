@@ -7,9 +7,13 @@
 #' @return <rt.one_string>
 #'
 one_string <- function(chr){
-  stopifnot(all(is.character(chr),
-                length(chr) == 1,
-                !is.na(chr),
-                !chr == ""))
-  unclass(chr)
+  stopifnot(is_one_string(chr))
+  chr
+}
+
+is_one_string <- function(chr){
+  all(is.character(chr),
+      length(chr) == 1,
+      !is.na(chr),
+      !chr == "")
 }

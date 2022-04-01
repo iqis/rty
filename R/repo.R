@@ -27,6 +27,15 @@ repo <- function(name, root){
             root = root)
 }
 
+#' @method print rt.repo
+#' @export
+print.rt.repo <- function(x, ...){
+  cat(sprintf("<Artifactory Repository>\n\"%s\" at \"%s\"",
+              attr(x, "name"),
+              attr(x, "root")))
+}
+
+
 #' Create API Endpoint from Artifactory Repository
 #'
 #' This endpoint is particular to submitting source code to a CRAN-type repository.
@@ -41,8 +50,6 @@ api_endpoint <- function(repo){
   name <- attr(repo, "name")
   root <- attr(repo, "root")
 
-  structure(file.path(root, "api", "cran", name, "source"),
+  structure(file.path(root, "api", "cran", name, "sources"),
             class = "rt.api_endpoint")
 }
-
-

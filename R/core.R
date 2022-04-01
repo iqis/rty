@@ -7,11 +7,11 @@
 #' @return NULL
 #' @export
 #'
-install <- function(name, profile = profile(), ...){
+install <- function(name, profile = rt::profile(), ...){
   name <- one_string(name)
-  assert_argument_class(repo, "rt.profile")
+  assert_argument_class(profile, "rt.profile")
 
-  if (inherits(profile$cred, "rt.cred.api_key") | inherits(profile$cred, "rt.cred.bearer_token")) {
+  if (inherits(profile$cred, "rt.cred.api_key") | inherits(profile$cred, "rt.cred.token")) {
     utils::install.packages(pkgs = name,
                      repos = profile$repo,
                      headers = profile$cred,
@@ -19,7 +19,6 @@ install <- function(name, profile = profile(), ...){
   } else if (inherits(profile$cred, "rt.cred.user_password")) {
     stop("user/password authentication is not supported yet.")
   }
-  invisible(NULL)
 }
 
 
@@ -31,7 +30,7 @@ install <- function(name, profile = profile(), ...){
 #' @return NULL
 #' @export
 #'
-deploy <- function(file, profile = profile()){
+deploy <- function(file, profile = rt::profile()){
   file <- one_string(file)
   assert_argument_class(profile, "rt.profile")
 
@@ -40,16 +39,33 @@ deploy <- function(file, profile = profile()){
   }
 
   if (inherits(profile$cred, "rt.cred.api_key")) {
-    system(sprintf('curl -H "X-JFrog-Art-Api:%s" -T %s -XPOST "%s"',
-                   attr(profile$cred, "key"),
-                   file,
-                   api_endpoint(profile$repo)))
-  } else if (inherits(profile$cred, "rt.cred.bearer_token")) {
-    stop("Deploying with Bearer Token is not supported yet.")
+    # ret <- system(sprintf('curl -H "X-JFrog-Art-Api:%s" -T %s -XPOST "%s"',
+    #                       attr(profile$cred, "key"),
+    #                       file,
+    #                       api_endpoint(profile$repo)),
+    #               intern = TRUE)
+    # if (ret != character()) {
+    #   ret_msg <- jsonlite::fromJSON(ret)
+    #   return(ret_msg)
+    # }
+
+    response <- httr::POST(api_endpoint(profile$repo),
+                           httr::add_headers(.headers = profile$cred),
+                           body = httr::upload_file(file))
+
+    if (response$status_code != 201) {
+      stop(errors$failed_deployment(file,
+                                    profile$repo,
+                                    response))
+    }
+
+    return(response)
+
+  } else if (inherits(profile$cred, "rt.cred.token")) {
+    stop("Deploying with Token is not supported yet.")
   } else if (inherits(profile$cred, "rt.cred.user_password")) {
     stop("Deploying with User/Password is not supported yet.")
   }
-  invisible(NULL)
 }
 
 
@@ -63,7 +79,7 @@ deploy <- function(file, profile = profile()){
 #' @export
 #'
 build_deploy <- function(pkg = ".",
-                         profile,
+                         profile = rt::profile(),
                          ...){
   pkg <- one_string(pkg)
   assert_argument_class(profile, "rt.profile")
@@ -77,8 +93,6 @@ build_deploy <- function(pkg = ".",
 
   deploy(file = dest_file,
          profile = profile)
-
-  invisible(TRUE)
 }
 
 
@@ -90,7 +104,7 @@ build_deploy <- function(pkg = ".",
 #' @return <matrix>
 #' @export
 #'
-available <- function(profile = profile(),
+available <- function(profile = rt::profile(),
                       ...){
   assert_argument_class(profile, "rt.profile")
 

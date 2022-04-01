@@ -4,7 +4,7 @@
 \alias{build_deploy}
 \title{Build to Artifactory}
 \usage{
-build_deploy(pkg = ".", profile, ...)
+build_deploy(pkg = ".", profile = rt::profile(), ...)
 }
 \arguments{
 \item{pkg}{directory path to package source code; <character>}

@@ -4,7 +4,7 @@
 \alias{install}
 \title{Install Package from CRAN-like Repository on Artifactory}
 \usage{
-install(name, profile = profile(), ...)
+install(name, profile = rt::profile(), ...)
 }
 \arguments{
 \item{name}{Name of the package; <character>}

@@ -46,7 +46,7 @@ get_repo <- function(name = "default"){
 #' @rdname option_accessors
 #' @export
 set_cred <- function(cred, name = "default"){
-  # assert_argument_class(cred, "rt.cred")
+  assert_argument_class(cred, "rt.cred")
 
   name <- one_string(name)
 

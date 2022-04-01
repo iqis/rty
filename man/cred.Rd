@@ -3,13 +3,13 @@
 \name{cred}
 \alias{cred}
 \alias{api_key}
-\alias{bearer_token}
+\alias{token}
 \alias{user_password}
 \title{Artifactory Credentials}
 \usage{
 api_key(key)
 
-bearer_token(token)
+token(token)
 
 user_password(user_name, password)
 }
