@@ -17,12 +17,12 @@ set_repo <- function(repo, name = "default"){
   name <- one_string(name)
 
   # initialize if empty
-  if (is.null(getOption("rt.repo"))) {
-    options(rt.repo = list())
+  if (is.null(getOption("rt.repos"))) {
+    options(rt.repos = list())
   }
 
-  my_repos <- getOption("rt.repo")
-  my_repos[name] <- repo
+  my_repos <- getOption("rt.repos")
+  my_repos[[name]] <- repo
 
   options(rt.repos = my_repos)
 
@@ -34,7 +34,7 @@ set_repo <- function(repo, name = "default"){
 get_repo <- function(name = "default"){
   name <- one_string(name)
 
-  res <- getOption("rt.repo")[[name]]
+  res <- getOption("rt.repos")[[name]]
   if (is.null(res)) {
     stop(errors$undefined_repo(name))
   } else {
@@ -46,7 +46,7 @@ get_repo <- function(name = "default"){
 #' @rdname option_accessors
 #' @export
 set_cred <- function(cred, name = "default"){
-  assert_argument_class(cred, "rt.cred")
+  # assert_argument_class(cred, "rt.cred")
 
   name <- one_string(name)
 
@@ -56,7 +56,7 @@ set_cred <- function(cred, name = "default"){
   }
 
   my_creds <- getOption("rt.creds")
-  my_creds[name] <- cred
+  my_creds[[name]] <- cred
 
   options(rt.creds = my_creds)
 
@@ -69,7 +69,7 @@ set_cred <- function(cred, name = "default"){
 get_cred <- function(name = "default"){
   name <- one_string(name)
 
-  res <- getOption("rt.cred")[[name]]
+  res <- getOption("rt.creds")[[name]]
   if (is.null(res)) {
     stop(errors$undefined_cred(name))
   } else {
