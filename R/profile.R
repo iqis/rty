@@ -1,9 +1,9 @@
 #' Artifactory Profile
 #'
-#' The Artifactory profile is the combination of repository and credential.
+#' An Artifactory profile is the combination of Repository and Credentials.
 #'
 #' @param repo repository; <rt.repo>
-#' @param cred credential; <rt.cred>
+#' @param cred credentials; <rt.cred>
 #'
 #' @return <rt.profile>
 #' @export
@@ -20,7 +20,7 @@ profile <- function(repo = get_repo(), cred = get_cred()){
 #' @method print rt.profile
 #' @export
 print.rt.profile <- function(x, ...){
-  cat("Artifactory Profile")
-  print(x$repo)
-  print(x$cred)
+  cat("Artifactory Profile\n")
+  cat("\t"); print(x$repo); cat("\n")
+  cat("\t"); print(x$cred)
 }
