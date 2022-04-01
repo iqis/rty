@@ -11,6 +11,5 @@ one_string <- function(chr){
                 length(chr) == 1,
                 !is.na(chr),
                 !chr == ""))
-  structure(chr,
-            class = "rt.one_string")
+  unclass(chr)
 }
