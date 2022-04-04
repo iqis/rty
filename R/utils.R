@@ -17,3 +17,32 @@ is_one_string <- function(chr){
       !is.na(chr),
       !chr == "")
 }
+
+
+#' Evaluate any Expression with rt Namespace
+#'
+#' rt Namespace is attached to the calling scope
+#'
+#' @param expr expression; <any>
+#'
+#' @return <any>
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' rt::with_rt({
+#'   install("my-package",
+#'           profile(repo("my-repository",
+#'                        "https://artifactory.my.domain/artifactory/"),
+#'                   api_key("[paste API key]")))
+#' })
+#' }
+with_rt <- function(expr){
+  rt_env <- asNamespace("rt")
+  parent.env(parent.env(rt_env)) <- globalenv()
+
+  eval_env <- new.env(parent = parent.frame())
+
+  eval(substitute(expr),
+       eval_env)
+}
