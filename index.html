@@ -28,7 +28,7 @@
     
     <a class="navbar-brand me-2" href="index.html">rt</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.2.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -57,11 +57,10 @@
 </h1></div>
 <!-- badges: start -->
 
-<p>The goal of rt is to …</p>
+<p>Build and install packages to and from CRAN-like repositories on Artifactory. Set up and manage user enrivonment to keep track of repositories and credentials.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>You can install the development version of rt from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
 <span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"iqis/rt"</span><span class="op">)</span></code></pre></div>
@@ -69,10 +68,55 @@
 <div class="section level2">
 <h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
 </h2>
-<p>This is a basic example which shows you how to solve a common problem:</p>
+<p>The <code>rt</code> package is mainly designed to be used unattached to avoid masking names from other packages. If you do not want to refer to <code>rt</code> functions with qualified name, use <code>{r} rt::with_rt()</code></p>
+<div class="section level4">
+<h4 id="repository--crednetials">Repository &amp; Crednetials<a class="anchor" aria-label="anchor" href="#repository--crednetials"></a>
+</h4>
+<p>Define a repository.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://iqis.github.io/rt/">rt</a></span><span class="op">)</span>
-<span class="co">## basic example code</span></code></pre></div>
+<code class="sourceCode R"><span class="fu">rt</span><span class="fu">::</span><span class="fu"><a href="reference/repo.html">repo</a></span><span class="op">(</span><span class="st">"my-repository"</span>,
+         <span class="st">"https://artifactory.my.domain/artifactory/"</span><span class="op">)</span></code></pre></div>
+<p>You can assign a name to the repository object and use it later.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">my_repository_on_my_domain</span> <span class="op">&lt;-</span> <span class="fu">rt</span><span class="fu">::</span><span class="fu"><a href="reference/repo.html">repo</a></span><span class="op">(</span><span class="st">"my-repository"</span>,
+                                       <span class="st">"https://artifactory.my.domain/artifactory/"</span><span class="op">)</span>
+<span class="va">my_repository_on_my_domain</span></code></pre></div>
+<p>You can also cache the object in R session’s <code>option</code> space.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">rt</span><span class="fu">::</span><span class="fu"><a href="reference/option_accessors.html">set_repo</a></span><span class="op">(</span><span class="fu">rt</span><span class="fu">::</span><span class="fu"><a href="reference/repo.html">repo</a></span><span class="op">(</span><span class="st">"my-repository"</span>,
+                      <span class="st">"https://artifactory.my.domain/artifactory/"</span><span class="op">)</span>, 
+             <span class="st">"my_repository_on_my_domain"</span><span class="op">)</span>
+<span class="fu">rt</span><span class="fu">::</span><span class="fu"><a href="reference/option_accessors.html">get_repo</a></span><span class="op">(</span><span class="st">"my_repository_on_my_domain"</span><span class="op">)</span></code></pre></div>
+<p>There are two kinds of credentials, and can be handled the same say.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">rt</span><span class="fu">::</span><span class="fu"><a href="reference/option_accessors.html">set_cred</a></span><span class="op">(</span><span class="fu">rt</span><span class="fu">::</span><span class="fu"><a href="reference/cred.html">api_key</a></span><span class="op">(</span><span class="st">"[paste API key]"</span><span class="op">)</span>, 
+             <span class="st">"my-api-key"</span><span class="op">)</span>
+
+<span class="va">my_token</span> <span class="op">&lt;-</span> <span class="fu">rt</span><span class="fu">::</span><span class="fu"><a href="reference/cred.html">token</a></span><span class="op">(</span><span class="st">"[paste token]"</span><span class="op">)</span>
+
+<span class="fu">rt</span><span class="fu">::</span><span class="fu"><a href="reference/option_accessors.html">get_cred</a></span><span class="op">(</span><span class="st">"my-api-key"</span><span class="op">)</span>
+<span class="va">my_token</span></code></pre></div>
+<p>Repository and Credentials together makes a Profile.</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">my_profile</span> <span class="op">&lt;-</span> <span class="fu">rt</span><span class="fu">::</span><span class="fu"><a href="reference/profile.html">profile</a></span><span class="op">(</span><span class="fu">rt</span><span class="fu">::</span><span class="fu"><a href="reference/option_accessors.html">get_repo</a></span><span class="op">(</span><span class="st">"my_repository_on_my_domain"</span><span class="op">)</span>, 
+                          <span class="va">my_token</span><span class="op">)</span></code></pre></div>
+</div>
+<div class="section level4">
+<h4 id="deploy--install-package">Deploy &amp; Install Package<a class="anchor" aria-label="anchor" href="#deploy--install-package"></a>
+</h4>
+<p>Profile is used to access the repository.</p>
+<p>Deploy a package</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">rt</span><span class="fu">::</span><span class="fu"><a href="reference/deploy.html">deploy</a></span><span class="op">(</span><span class="st">"../my_package_0.0.1.9000.tar.gz"</span>, 
+           <span class="va">my_profile</span><span class="op">)</span></code></pre></div>
+<p>See available packages</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">rt</span><span class="fu">::</span><span class="fu"><a href="reference/available.html">available</a></span><span class="op">(</span><span class="va">my_profile</span><span class="op">)</span></code></pre></div>
+<p>Install a package</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">rt</span><span class="fu">::</span><span class="fu"><a href="reference/install.html">install</a></span><span class="op">(</span><span class="st">"my_package"</span>, 
+            <span class="va">my_profile</span><span class="op">)</span></code></pre></div>
+</div>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">
