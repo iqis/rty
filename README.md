@@ -3,6 +3,7 @@
 <!-- badges: start -->
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![R-CMD-check](https://github.com/iqis/rt/workflows/R-CMD-check/badge.svg)](https://github.com/iqis/rt/actions)
+[![Codecov test coverage](https://codecov.io/gh/iqis/rt/branch/main/graph/badge.svg)](https://app.codecov.io/gh/iqis/rt?branch=main)
 <!-- badges: end -->
 
 Build and install packages to and from CRAN-like repositories on Artifactory. Set up and manage user enrivonment to keep track of repositories and credentials.

@@ -8,7 +8,8 @@
 #'
 one_string <- function(chr){
   stopifnot(is_one_string(chr))
-  chr
+  structure(chr,
+            class = "rt.one_string")
 }
 
 is_one_string <- function(chr){

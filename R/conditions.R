@@ -1,3 +1,15 @@
+#' Conditions
+#'
+#' @name conditions
+#'
+NULL
+
+
+#' Asssert Argument Class
+#'
+#' @param argument argument; <any>
+#' @param expected_class expected class; <rt.one_string>
+#'
 assert_argument_class <- function(argument, expected_class){
   argument_name <- as.character(substitute(argument))
   expected_class <- one_string(expected_class)
@@ -10,6 +22,7 @@ assert_argument_class <- function(argument, expected_class){
   }
 }
 
+#' @rdname conditions
 errors <- list()
 
 errors$wrong_argument_class <- function(argument_name, expected_class, observed_classes){
@@ -54,7 +67,7 @@ errors$failed_deployment <- function(file, repo, response){
                  response = response)
 }
 
-
+#' @rdname conditions
 warnings <- list()
 
 warnings$malformed_api_key <- function(expected_nchar, observed_nchar){
