@@ -19,6 +19,7 @@ install <- function(name, profile = rt::profile(), ...){
   } else if (inherits(profile$cred, "rt.cred.user_password")) {
     stop("user/password authentication is not supported yet.")
   }
+  invisible()
 }
 
 

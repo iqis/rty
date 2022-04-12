@@ -25,6 +25,14 @@ assert_argument_class <- function(argument, expected_class){
 #' @rdname conditions
 errors <- list()
 
+errors$malformed_one_string <- function(chr){
+  errorCondition(sprintf("The character vector %s does not match the quiteria from rt:::is_one_string()",
+                         chr),
+                 class = c("rt.error.malformed_one_string",
+                           "rt.error"))
+}
+
+
 errors$wrong_argument_class <- function(argument_name, expected_class, observed_classes){
   errorCondition(sprintf("Argument `%s` is expected to be of class <%s>, but is observed to be <%s>",
                          argument_name,
@@ -78,7 +86,7 @@ warnings$malformed_api_key <- function(expected_nchar, observed_nchar){
                              "rt.warning"))
 }
 
-warnings$malformed_token <- function(expectec_nchar, observed_nchar){
+warnings$malformed_token <- function(expected_nchar, observed_nchar){
   warningCondition(sprintf("Artifactory Bearer Token is possibly malformed. Expected number of characters is %s but got %s",
                            expected_nchar,
                            observed_nchar),

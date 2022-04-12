@@ -7,7 +7,9 @@
 #' @return <rt.one_string>
 #'
 one_string <- function(chr){
-  stopifnot(is_one_string(chr))
+  if (!is_one_string(chr)) {
+    stop(errors$malformed_one_string(chr))
+  }
   structure(chr,
             class = "rt.one_string")
 }

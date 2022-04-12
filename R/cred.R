@@ -35,8 +35,8 @@ print.rt.cred.api_key <- function(x, ...){
 #' @export
 token <- function(token){
   if (nchar(token) != 795 | !is_one_string(token)) {
-    warning(warnings$malformed_auth_token(795,
-                                          nchar(token)))
+    warning(warnings$malformed_token(795,
+                                     nchar(token)))
   }
   token <- one_string(token)
 
