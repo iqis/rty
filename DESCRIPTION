@@ -1,6 +1,6 @@
 Package: rt
 Title: Simple Helpers for Working with Artifactory 
-Version: 0.0.2.9001
+Version: 0.0.2.9000
 Authors@R: 
         c(person(given = "Siqi",
                  family = "Zhang",
