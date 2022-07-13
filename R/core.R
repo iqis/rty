@@ -2,6 +2,7 @@
 #'
 #' @param name Name of the package; <character>
 #' @param profile Artifactory profile; <rt.profile>
+#' @param version Version of the package, latest when NULL; <character, NULL>
 #' @param ... dot-dot-dot, passed into `utils::install.packages()`
 #'
 #' @return NULL
@@ -37,7 +38,6 @@ install <- function(name, profile = rt::profile(), version = NULL, ...){
       stop("user/password authentication is not supported yet.")
   }
 }
-
 
 
 #' Deploy Package to CRAN-like Repository on Artifactory
