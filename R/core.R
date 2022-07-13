@@ -7,20 +7,38 @@
 #' @return NULL
 #' @export
 #'
-install <- function(name, profile = rt::profile(), ...){
+install <- function(name, profile = rt::profile(), version = NULL, ...){
   name <- one_string(name)
   assert_argument_class(profile, "rt.profile")
 
   if (inherits(profile$cred, "rt.cred.api_key") | inherits(profile$cred, "rt.cred.token")) {
-    utils::install.packages(pkgs = name,
-                     repos = profile$repo,
-                     headers = profile$cred,
-                     ...)
+    if (is.null(version)) {
+      utils::install.packages(pkgs = name,
+                              repos = profile$repo,
+                              headers = profile$cred,
+                              ...)
+    }
+
+    if (!is.null(version)) {
+      archive_contrib_url <- file.path(profile$repo,
+                                       "src/contrib/Archive",
+                                       name,
+                                       version,
+                                       paste0(name, "_", version, ".tar.gz"),
+                                       fsep = "/")
+
+      utils::install.packages(archive_contrib_url,
+                              repos = NULL,
+                              type = "source",
+                              headers = profile$cred)
+    }
+
   } else if (inherits(profile$cred, "rt.cred.user_password")) {
-    stop("user/password authentication is not supported yet.")
+      stop("user/password authentication is not supported yet.")
   }
   invisible()
 }
+
 
 
 #' Deploy Package to CRAN-like Repository on Artifactory
