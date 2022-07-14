@@ -69,6 +69,11 @@ rty::available(my_profile)
 # Install a package
 rty::install("my_package", 
              my_profile)
+
+# Install a specific version from the Archive
+rty::install("my_package", 
+             my_profile, 
+             version = "0.2.7")
 ```
 
 ### Using Defaults
