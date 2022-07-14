@@ -1,6 +1,6 @@
 Package: rty
 Title: Simple Helpers for Working with Artifactory 
-Version: 0.0.3
+Version: 0.0.3.9001
 Authors@R: 
         c(person(given = "Siqi",
                  family = "Zhang",
@@ -17,10 +17,8 @@ RoxygenNote: 7.1.2
 Depends: 
     R (>= 4.0)
 Imports: 
-    curl,
     lifecycle,
     devtools,
-    jsonlite,
     httr
 Suggests: 
     covr,

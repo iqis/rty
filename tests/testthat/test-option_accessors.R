@@ -1,15 +1,15 @@
 test_that("set_repo() guards against illegal input", {
   expect_error(set_repo("not a repo"),
-               class = "rt.error")
+               class = "rty.error")
   expect_error(set_repo("not a repo"),
-               class = "rt.error.wrong_argument_class")
+               class = "rty.error.wrong_argument_class")
 })
 
 test_that("set_repo()/set_cred() guards against illegal input", {
   expect_error(set_cred("not a repo"),
-               class = "rt.error")
+               class = "rty.error")
   expect_error(set_cred("not a repo"),
-               class = "rt.error.wrong_argument_class")
+               class = "rty.error.wrong_argument_class")
 })
 
 
@@ -21,7 +21,7 @@ test_that("set_repo() sets the repo", {
 
   set_repo(my_artifactory)
 
-  expect_equal(getOption("rt.repos")[["default"]],
+  expect_equal(getOption("rty.repos")[["default"]],
                my_artifactory)
 
 })
@@ -33,7 +33,7 @@ test_that("set_cred() sets the cred", {
 
   set_cred(my_cred)
 
-  expect_equal(getOption("rt.creds")[["default"]],
+  expect_equal(getOption("rty.creds")[["default"]],
                my_cred)
 })
 
@@ -47,7 +47,7 @@ test_that("set_repo() silently overwrites repos with the same name", {
 
   set_repo(my_new_artifactory)
 
-  expect_equal(getOption("rt.repos")[["default"]],
+  expect_equal(getOption("rty.repos")[["default"]],
                my_new_artifactory)
 })
 
@@ -60,7 +60,7 @@ test_that("set_cred() silently overwrites cred with the same name", {
 
   set_cred(my_new_cred)
 
-  expect_equal(getOption("rt.creds")[["default"]],
+  expect_equal(getOption("rty.creds")[["default"]],
                my_new_cred)
 })
 
@@ -76,10 +76,10 @@ test_that("set_repo() does not affect repo with different name", {
   set_repo(my_new_artifactory,
            "my_new_artifactory")
 
-  expect_equal(getOption("rt.repos")[["my_artifactory"]],
+  expect_equal(getOption("rty.repos")[["my_artifactory"]],
                my_artifactory)
 
-  expect_equal(getOption("rt.repos")[["my_new_artifactory"]],
+  expect_equal(getOption("rty.repos")[["my_new_artifactory"]],
                my_new_artifactory)
 })
 
@@ -95,9 +95,9 @@ test_that("set_cred() does not affect cred with different name", {
   set_cred(my_new_cred, "my_new_cred")
 
 
-  expect_equal(getOption("rt.creds")[["my_cred"]],
+  expect_equal(getOption("rty.creds")[["my_cred"]],
                my_cred)
 
-  expect_equal(getOption("rt.creds")[["my_new_cred"]],
+  expect_equal(getOption("rty.creds")[["my_new_cred"]],
                my_new_cred)
 })
