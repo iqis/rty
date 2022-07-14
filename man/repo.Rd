@@ -12,7 +12,7 @@ repo(name, root)
 \item{root}{Root URL to Arifactory instance; <character>}
 }
 \value{
-<rt.repo>
+<rty.repo>
 }
 \description{
 Artifactory Repository

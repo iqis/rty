@@ -7,10 +7,10 @@
 api_endpoint(repo)
 }
 \arguments{
-\item{repo}{Artifactory repository; <rt.repo>}
+\item{repo}{Artifactory repository; <rty.repo>}
 }
 \value{
-<rt.api_endpoint>
+<rty.api_endpoint>
 }
 \description{
 This endpoint is particular to submitting source code to a CRAN-type repository.

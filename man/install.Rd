@@ -4,12 +4,12 @@
 \alias{install}
 \title{Install Package from CRAN-like Repository on Artifactory}
 \usage{
-install(name, profile = rt::profile(), version = NULL, ...)
+install(name, profile = rty::profile(), version = NULL, ...)
 }
 \arguments{
 \item{name}{Name of the package; <character>}
 
-\item{profile}{Artifactory profile; <rt.profile>}
+\item{profile}{Artifactory profile; <rty.profile>}
 
 \item{version}{Version of the package, latest when NULL; <character, NULL>}
 

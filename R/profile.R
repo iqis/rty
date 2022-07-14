@@ -2,24 +2,24 @@
 #'
 #' An Artifactory profile is the combination of Repository and Credentials.
 #'
-#' @param repo repository; <rt.repo>
-#' @param cred credentials; <rt.cred>
+#' @param repo repository; <rty.repo>
+#' @param cred credentials; <rty.cred>
 #'
-#' @return <rt.profile>
+#' @return <rty.profile>
 #' @export
 #'
 profile <- function(repo = get_repo(), cred = get_cred()){
-  assert_argument_class(repo, "rt.repo")
-  assert_argument_class(cred, "rt.cred")
+  assert_argument_class(repo, "rty.repo")
+  assert_argument_class(cred, "rty.cred")
 
   structure(list(repo = repo,
                  cred = cred),
-            class = "rt.profile")
+            class = "rty.profile")
 }
 
-#' @method print rt.profile
+#' @method print rty.profile
 #' @export
-print.rt.profile <- function(x, ...){
+print.rty.profile <- function(x, ...){
   cat("Artifactory Profile\n")
   cat("\t"); print(x$repo); cat("\n")
   cat("\t"); print(x$cred)

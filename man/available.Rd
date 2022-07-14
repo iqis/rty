@@ -4,10 +4,10 @@
 \alias{available}
 \title{Available Packages}
 \usage{
-available(profile = rt::profile(), ...)
+available(profile = rty::profile(), ...)
 }
 \arguments{
-\item{profile}{Artifactory profile; <rt.profile>}
+\item{profile}{Artifactory profile; <rty.profile>}
 
 \item{...}{dot-dot-dot, passed into \code{utils::available.packages()}}
 }

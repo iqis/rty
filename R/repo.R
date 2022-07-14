@@ -3,7 +3,7 @@
 #' @param name Name for the repository; <character>
 #' @param root Root URL to Arifactory instance; <character>
 #'
-#' @return <rt.repo>
+#' @return <rty.repo>
 #' @export
 #'
 repo <- function(name, root){
@@ -22,14 +22,14 @@ repo <- function(name, root){
   names(res) <- name
 
   structure(res,
-            class = "rt.repo",
+            class = "rty.repo",
             name = name,
             root = root)
 }
 
-#' @method print rt.repo
+#' @method print rty.repo
 #' @export
-print.rt.repo <- function(x, ...){
+print.rty.repo <- function(x, ...){
   cat(sprintf("<Artifactory Repository>\n\"%s\" at \"%s\"",
               attr(x, "name"),
               attr(x, "root")))
@@ -40,16 +40,16 @@ print.rt.repo <- function(x, ...){
 #'
 #' This endpoint is particular to submitting source code to a CRAN-type repository.
 #'
-#' @param repo Artifactory repository; <rt.repo>
+#' @param repo Artifactory repository; <rty.repo>
 #'
-#' @return <rt.api_endpoint>
+#' @return <rty.api_endpoint>
 api_endpoint <- function(repo){
-  assert_argument_class(repo, "rt.repo")
+  assert_argument_class(repo, "rty.repo")
 
   # explode attrs
   name <- attr(repo, "name")
   root <- attr(repo, "root")
 
   structure(file.path(root, "api", "cran", name, "sources"),
-            class = "rt.api_endpoint")
+            class = "rty.api_endpoint")
 }
