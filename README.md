@@ -1,9 +1,9 @@
-# rt
+# rty
 
 <!-- badges: start -->
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
-[![R-CMD-check](https://github.com/iqis/rt/workflows/R-CMD-check/badge.svg)](https://github.com/iqis/rt/actions)
-[![Codecov test coverage](https://codecov.io/gh/iqis/rt/branch/main/graph/badge.svg)](https://app.codecov.io/gh/iqis/rt?branch=main)
+[![R-CMD-check](https://github.com/iqis/rty/workflows/R-CMD-check/badge.svg)](https://github.com/iqis/rty/actions)
+[![Codecov test coverage](https://codecov.io/gh/iqis/rty/branch/main/graph/badge.svg)](https://app.codecov.io/gh/iqis/rty?branch=main)
 <!-- badges: end -->
 
 Build and install packages to and from CRAN-like repositories on Artifactory. Set up and manage user enrivonment to keep track of repositories and credentials.
@@ -12,45 +12,45 @@ Build and install packages to and from CRAN-like repositories on Artifactory. Se
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("iqis/rt")
+devtools::install_github("iqis/rty")
 ```
 
 ## Example
-The `rt` package is mainly designed to be used unattached to avoid masking names from other packages. If you do not want to refer to `rt` functions with qualified name, use `r rt::with_rt()`
+The `rty` package is mainly designed to be used unattached to avoid masking names from other packages. If you do not want to refer to `rty` functions with qualified name, use `r rty::with_rty()`
 
 
 ### Repository & Credentials
 
 ``` r
 # Define a repository
-rt::repo("my-repository",
+rty::repo("my-repository",
          "https://artifactory.my.domain/artifactory/")
 
 # You can assign a name to the repository object and use it later.
-my_repository_on_my_domain <- rt::repo("my-repository",
+my_repository_on_my_domain <- rty::repo("my-repository",
                                        "https://artifactory.my.domain/artifactory/")
 my_repository_on_my_domain
 
 # You can also cache the object in R session's `option` space.
-rt::set_repo(rt::repo("my-repository",
+rty::set_repo(rty::repo("my-repository",
                       "https://artifactory.my.domain/artifactory/"), 
              "my_repository_on_my_domain")
-rt::get_repo("my_repository_on_my_domain")
+rty::get_repo("my_repository_on_my_domain")
 
 # There are two kinds of credentials, and can be handled the same say. 
-rt::set_cred(rt::api_key("[paste API key]"), 
+rty::set_cred(rty::api_key("[paste API key]"), 
              "my-api-key")
 
-my_token <- rt::token("[paste token]")
+my_token <- rty::token("[paste token]")
 
-rt::get_cred("my-api-key")
+rty::get_cred("my-api-key")
 my_token
 ```
 
 #### Profile 
 Repository and Credentials together makes a Profile.
 ```r
-my_profile <- rt::profile(rt::get_repo("my_repository_on_my_domain"), 
+my_profile <- rty::profile(rty::get_repo("my_repository_on_my_domain"), 
                           my_token)
 ```
 
@@ -60,14 +60,14 @@ Profile is used to access the repository by downsteam functions.
 
 ``` r
 # Deploy a package
-rt::deploy("../my_package_0.0.1.9000.tar.gz", 
+rty::deploy("../my_package_0.0.1.9000.tar.gz", 
            my_profile)
 
 # See available packages 
-rt::available(my_profile)
+rty::available(my_profile)
 
 # Install a package
-rt::install("my_package", 
+rty::install("my_package", 
              my_profile)
 ```
 
@@ -77,15 +77,15 @@ If you are only working with one pair of Artifactory repository and credential, 
 
 ```r
 # Consider including the following in your .Rprofile
-rt::with_rt({
+rty::with_rty({
   set_repo(repo("my_repository", 
                 "https://artifactory.my.domain/artifactory/"))
   set_cred(api_key("[paste API key]"))
 })
 
 # Then use 
-rt::available()
-rt::install("my_package")
+rty::available()
+rty::install("my_package")
 ```
 
 #### Reminder: Protect Your Secrets
