@@ -2,8 +2,8 @@
 #'
 #' @name option_accessors
 #'
-#' @param repo Artifactory repository; <rt.repo>
-#' @param cred Artifactory credentials; <rt.cred>
+#' @param repo Artifactory repository; <rty.repo>
+#' @param cred Artifactory credentials; <rty.cred>
 #' @param name name of the element; <character>
 #'
 #'
@@ -13,18 +13,18 @@ NULL
 #' @rdname option_accessors
 #' @export
 set_repo <- function(repo, name = "default"){
-  assert_argument_class(repo, "rt.repo")
+  assert_argument_class(repo, "rty.repo")
   name <- one_string(name)
 
   # initialize if empty
-  if (is.null(getOption("rt.repos"))) {
-    options(rt.repos = list())
+  if (is.null(getOption("rty.repos"))) {
+    options(rty.repos = list())
   }
 
-  my_repos <- getOption("rt.repos")
+  my_repos <- getOption("rty.repos")
   my_repos[[name]] <- repo
 
-  options(rt.repos = my_repos)
+  options(rty.repos = my_repos)
 
   invisible(repo)
 }
@@ -34,7 +34,7 @@ set_repo <- function(repo, name = "default"){
 get_repo <- function(name = "default"){
   name <- one_string(name)
 
-  res <- getOption("rt.repos")[[name]]
+  res <- getOption("rty.repos")[[name]]
   if (is.null(res)) {
     stop(errors$undefined_repo(name))
   } else {
@@ -46,19 +46,19 @@ get_repo <- function(name = "default"){
 #' @rdname option_accessors
 #' @export
 set_cred <- function(cred, name = "default"){
-  assert_argument_class(cred, "rt.cred")
+  assert_argument_class(cred, "rty.cred")
 
   name <- one_string(name)
 
   # initialize if empty
-  if (is.null(getOption("rt.creds"))) {
-    options(rt.creds = list())
+  if (is.null(getOption("rty.creds"))) {
+    options(rty.creds = list())
   }
 
-  my_creds <- getOption("rt.creds")
+  my_creds <- getOption("rty.creds")
   my_creds[[name]] <- cred
 
-  options(rt.creds = my_creds)
+  options(rty.creds = my_creds)
 
   invisible(cred)
 }
@@ -69,7 +69,7 @@ set_cred <- function(cred, name = "default"){
 get_cred <- function(name = "default"){
   name <- one_string(name)
 
-  res <- getOption("rt.creds")[[name]]
+  res <- getOption("rty.creds")[[name]]
   if (is.null(res)) {
     stop(errors$undefined_cred(name))
   } else {

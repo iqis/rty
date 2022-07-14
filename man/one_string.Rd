@@ -10,7 +10,7 @@ one_string(chr)
 \item{chr}{<character|!NA>}
 }
 \value{
-<rt.one_string>
+<rty.one_string>
 }
 \description{
 Create a non-NA, non-empty(""), <character> vector with length 1.

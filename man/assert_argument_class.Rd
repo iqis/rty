@@ -9,7 +9,7 @@ assert_argument_class(argument, expected_class)
 \arguments{
 \item{argument}{argument; <any>}
 
-\item{expected_class}{expected class; <rt.one_string>}
+\item{expected_class}{expected class; <rty.one_string>}
 }
 \description{
 Asssert Argument Class

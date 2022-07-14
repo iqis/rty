@@ -4,12 +4,12 @@
 \alias{build_deploy}
 \title{Build to Artifactory}
 \usage{
-build_deploy(pkg = ".", profile = rt::profile(), ...)
+build_deploy(pkg = ".", profile = rty::profile(), ...)
 }
 \arguments{
 \item{pkg}{directory path to package source code; <character>}
 
-\item{profile}{Artifactory profile; <rt.profile>}
+\item{profile}{Artifactory profile; <rty.profile>}
 
 \item{...}{dot-dot-dot, passed into \code{devtools::build()}}
 }

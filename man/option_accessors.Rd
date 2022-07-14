@@ -17,11 +17,11 @@ set_cred(cred, name = "default")
 get_cred(name = "default")
 }
 \arguments{
-\item{repo}{Artifactory repository; <rt.repo>}
+\item{repo}{Artifactory repository; <rty.repo>}
 
 \item{name}{name of the element; <character>}
 
-\item{cred}{Artifactory credentials; <rt.cred>}
+\item{cred}{Artifactory credentials; <rty.cred>}
 }
 \description{
 Set and Get Artifactory Profile Elements from Session Options
