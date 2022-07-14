@@ -16,10 +16,16 @@
     <loc>https://iqis.github.io/rt/reference/api_endpoint.html</loc>
   </url>
   <url>
+    <loc>https://iqis.github.io/rt/reference/assert_argument_class.html</loc>
+  </url>
+  <url>
     <loc>https://iqis.github.io/rt/reference/available.html</loc>
   </url>
   <url>
     <loc>https://iqis.github.io/rt/reference/build_deploy.html</loc>
+  </url>
+  <url>
+    <loc>https://iqis.github.io/rt/reference/conditions.html</loc>
   </url>
   <url>
     <loc>https://iqis.github.io/rt/reference/cred.html</loc>
@@ -46,9 +52,9 @@
     <loc>https://iqis.github.io/rt/reference/repo.html</loc>
   </url>
   <url>
-    <loc>https://iqis.github.io/rt/reference/rt-package.html</loc>
+    <loc>https://iqis.github.io/rt/reference/rty-package.html</loc>
   </url>
   <url>
-    <loc>https://iqis.github.io/rt/reference/with_rt.html</loc>
+    <loc>https://iqis.github.io/rt/reference/with_rty.html</loc>
   </url>
 </urlset>
