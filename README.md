@@ -16,7 +16,7 @@ devtools::install_github("iqis/rty")
 ```
 
 ## Example
-The `rty` package is mainly designed to be used unattached to avoid masking names from other packages. If you do not want to refer to `rty` functions with qualified name, use `r rty::with_rty()`
+The `rty` package is mainly designed to be used unattached to avoid masking names from other packages. If you do not want to refer to `rty` functions with qualified names, use `r rty::with_rty()`
 
 
 ### Repository & Credentials
