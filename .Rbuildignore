@@ -1,4 +1,4 @@
-^rt\.Rproj$
+^rty\.Rproj$
 ^\.Rproj\.user$
 ^LICENSE\.md$
 ^scratch
@@ -7,3 +7,4 @@
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$
+^codecov\.yml$

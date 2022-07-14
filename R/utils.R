@@ -4,11 +4,14 @@
 #'
 #' @param chr <character|!NA>
 #'
-#' @return <rt.one_string>
+#' @return <rty.one_string>
 #'
 one_string <- function(chr){
-  stopifnot(is_one_string(chr))
-  chr
+  if (!is_one_string(chr)) {
+    stop(errors$malformed_one_string(chr))
+  }
+  structure(chr,
+            class = "rty.one_string")
 }
 
 is_one_string <- function(chr){
@@ -19,9 +22,9 @@ is_one_string <- function(chr){
 }
 
 
-#' Evaluate any Expression with rt Namespace
+#' Evaluate any Expression with rty Namespace
 #'
-#' rt Namespace is attached to the calling scope
+#' rty Namespace is attached to the calling scope
 #'
 #' @param expr expression; <any>
 #'
@@ -30,16 +33,16 @@ is_one_string <- function(chr){
 #'
 #' @examples
 #' \dontrun{
-#' rt::with_rt({
+#' rty::with_rty({
 #'   install("my-package",
 #'           profile(repo("my-repository",
 #'                        "https://artifactory.my.domain/artifactory/"),
 #'                   api_key("[paste API key]")))
 #' })
 #' }
-with_rt <- function(expr){
-  rt_env <- asNamespace("rt")
-  parent.env(parent.env(rt_env)) <- globalenv()
+with_rty <- function(expr){
+  rty_env <- asNamespace("rty")
+  parent.env(parent.env(rty_env)) <- globalenv()
 
   eval_env <- new.env(parent = parent.frame())
 

@@ -20,14 +20,14 @@ api_key <- function(key){
   key <- one_string(key)
 
   structure(c(`X-JFrog-Art-Api` = key),
-            class = c("rt.cred.api_key",
-                      "rt.cred"),
+            class = c("rty.cred.api_key",
+                      "rty.cred"),
             key = key)
 }
 
-#' @method print rt.cred.api_key
+#' @method print rty.cred.api_key
 #' @export
-print.rt.cred.api_key <- function(x, ...){
+print.rty.cred.api_key <- function(x, ...){
   cat(sprintf("<Artifactory Credential: API Key>"))
 }
 
@@ -35,20 +35,20 @@ print.rt.cred.api_key <- function(x, ...){
 #' @export
 token <- function(token){
   if (nchar(token) != 795 | !is_one_string(token)) {
-    warning(warnings$malformed_auth_token(795,
-                                          nchar(token)))
+    warning(warnings$malformed_token(795,
+                                     nchar(token)))
   }
   token <- one_string(token)
 
   structure(c(`Authorization` = paste("Bearer", token)),
-            class = c("rt.cred.token",
-                      "rt.cred"),
+            class = c("rty.cred.token",
+                      "rty.cred"),
             token = token)
 }
 
-#' @method print rt.cred.token
+#' @method print rty.cred.token
 #' @export
-print.rt.cred.token <- function(x, ...){
+print.rty.cred.token <- function(x, ...){
   cat(sprintf("<Artifactory Credential: Token>"))
 }
 
@@ -60,14 +60,14 @@ user_password <- function(user_name, password){
   passworkd <- one_string(password)
 
   structure(paste0(user_name, ":", password),
-            class = c("rt.cred.user_password",
-                      "rt.cred"),
+            class = c("rty.cred.user_password",
+                      "rty.cred"),
             user_name = user_name,
             password = password)
 }
 
-#' @method print rt.cred.user_password
+#' @method print rty.cred.user_password
 #' @export
-print.rt.cred.user_password <- function(x, ...){
+print.rty.cred.user_password <- function(x, ...){
   cat(sprintf("<Artifactory Credential: User/Password>"))
 }

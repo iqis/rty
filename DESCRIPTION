@@ -1,6 +1,6 @@
-Package: rt
+Package: rty
 Title: Simple Helpers for Working with Artifactory 
-Version: 0.0.2.9000
+Version: 0.0.3.9001
 Authors@R: 
         c(person(given = "Siqi",
                  family = "Zhang",
@@ -17,12 +17,11 @@ RoxygenNote: 7.1.2
 Depends: 
     R (>= 4.0)
 Imports: 
-    curl,
     lifecycle,
     devtools,
-    jsonlite,
     httr
 Suggests: 
+    covr,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
-URL: https://iqis.github.io/rt/
+URL: https://iqis.github.io/rt/, https://github.com/iqis/rt
