@@ -17,7 +17,7 @@ devtools::install_github("iqis/rt")
 ## Example
 The `rt` package is mainly designed to be used unattached to avoid masking names from other packages. If you do not want to refer to `rt` functions with qualified name, use `{r} rt::with_rt()`
 
-#### Repository & Crednetials
+#### Repository & Credentials
 
 Define a repository.
 ``` r
